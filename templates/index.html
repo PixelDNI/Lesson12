@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #main{
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            height: 300px;
+            background-color: burlywood;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+
+        }
+        #child {
+            width: 200px;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        button{
+            width: 80px;
+            height: 100%;
+            margin: 0 5px;
+        }
+        #delete{
+            background-color: red;
+        }
+        #edit{
+            background-color: green;
+        }
+
+    </style>
+</head>
+<body>
+    {% for item in products %}
+        <div id="main"> 
+            <p>{{item.name}} </p>
+            <p>{{ item.price }}</p>
+            <p> {{ item.count_on_stock }}</p>
+            <p> {{ item.category }} </p>
+            <div id="child">
+                <a href="{% url 'remove_function' item.id %}">
+    <button type="submit" id="delete" name="delete">Delete</button>
+</a>
+                 <a href="{% url 'update_function' item.id %}">
+                <button type="submit" id="edit" name='edit' >Edit</button>
+            </a>
+            </div>
+
+        </div>
+
+    {% endfor %}
+</body>
+</html>
